@@ -44,7 +44,6 @@ const Home: NextPage = () => {
                   src="https://p5js.org/assets/img/p5js.svg"
                   alt="logo"
                   fit="contain"
-                  // alignSelf="start"
                 />
               </Box>
               <Box gridArea="topNav"></Box>
