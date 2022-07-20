@@ -14,8 +14,7 @@ const Home: NextPage = () => {
       <PageContent height="100%">
         <Grid
           rows={["xxsmall", "auto"]}
-          columns={["small", "auto"]}
-          gap="small"
+          columns={["medium", "auto"]}
           areas={[
             { name: "header", start: [0, 0], end: [1, 0] },
             { name: "nav", start: [0, 1], end: [0, 1] },
@@ -23,12 +22,33 @@ const Home: NextPage = () => {
           ]}
           height="100%"
         >
-          <Box gridArea="header" background="brand">
-            <Image
-              src="https://p5js.org/assets/img/p5js.svg"
-              alt="logo"
-              fit="contain"
-            />
+          <Box
+            gridArea="header"
+            background="light-1"
+            elevation="small"
+            style={{ zIndex: 1 }}
+            pad="xsmall"
+            direction="row"
+          >
+            <Grid
+              rows={["auto"]}
+              columns={["medium", "auto"]}
+              areas={[
+                { name: "logo", start: [0, 0], end: [0, 0] },
+                { name: "topNav", start: [1, 0], end: [1, 0] },
+              ]}
+              height="100%"
+            >
+              <Box gridArea="logo">
+                <Image
+                  src="https://p5js.org/assets/img/p5js.svg"
+                  alt="logo"
+                  fit="contain"
+                  // alignSelf="start"
+                />
+              </Box>
+              <Box gridArea="topNav"></Box>
+            </Grid>
           </Box>
           <Box gridArea="nav">
             <SidebarNav data={data} />
