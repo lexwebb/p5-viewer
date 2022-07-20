@@ -4,10 +4,7 @@ import useSWR from "swr";
 import { Sketches } from "../dto/sketches";
 import { useSketchesService } from "../services/sketchesService";
 
-const SidebarNav: React.FC = () => {
-  const { getSketches } = useSketchesService();
-  const { data, error } = useSWR<Sketches>("/api/sketches", getSketches);
-
+const SidebarNav: React.FC<{ data?: Sketches }> = ({ data }) => {
   return (
     <Sidebar
       background="brand"

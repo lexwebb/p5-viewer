@@ -1,8 +1,14 @@
 import { Box, Grid, Page, PageContent, Image } from "grommet";
 import type { NextPage } from "next";
+import useSWR from "swr";
 import SidebarNav from "../components/SidebarNav";
+import { Sketches } from "../dto/sketches";
+import { useSketchesService } from "../services/sketchesService";
 
 const Home: NextPage = () => {
+  const { getSketches } = useSketchesService();
+  const { data, error } = useSWR<Sketches>("/api/sketches", getSketches);
+
   return (
     <Page height="100%">
       <PageContent height="100%">
@@ -25,9 +31,17 @@ const Home: NextPage = () => {
             />
           </Box>
           <Box gridArea="nav">
-            <SidebarNav />
+            <SidebarNav data={data} />
           </Box>
-          <Box gridArea="main" />
+          <Box gridArea="main" height="100%">
+            {data && data.files[0] && (
+              <iframe
+                src={`/api/sketch/${data.files[0]}`}
+                className="p5-frame"
+                frameBorder="0"
+              ></iframe>
+            )}
+          </Box>
         </Grid>
       </PageContent>
     </Page>
