@@ -1,13 +1,16 @@
-import { Box, Grid, Page, PageContent, Image } from "grommet";
+import { Box, Grid, Page, PageContent, Image, Heading } from "grommet";
 import type { NextPage } from "next";
+import { useState } from "react";
 import useSWR from "swr";
 import SidebarNav from "../components/SidebarNav";
+import Sketch from "../components/Sketch";
 import { Sketches } from "../dto/sketches";
 import { useSketchesService } from "../services/sketchesService";
 
 const Home: NextPage = () => {
   const { getSketches } = useSketchesService();
   const { data, error } = useSWR<Sketches>("/api/sketches", getSketches);
+  const [currentSketch, setCurrentSketch] = useState<string>();
 
   return (
     <Page height="100%">
@@ -50,16 +53,11 @@ const Home: NextPage = () => {
             </Grid>
           </Box>
           <Box gridArea="nav">
-            <SidebarNav data={data} />
+            <SidebarNav data={data} selectSketch={setCurrentSketch} />
           </Box>
           <Box gridArea="main" height="100%">
-            {data && data.files[0] && (
-              <iframe
-                src={`/api/sketch/${data.files[0]}`}
-                className="p5-frame"
-                frameBorder="0"
-              ></iframe>
-            )}
+            {currentSketch && <Sketch sketch={currentSketch} />}
+            {!currentSketch && <Heading>Select a scetch from the left</Heading>}
           </Box>
         </Grid>
       </PageContent>
