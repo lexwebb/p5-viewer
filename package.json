@@ -4,13 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:next": "next build",
+    "build:npx": "tsc index.ts --esModuleInterop",
+    "build": "yarn build:next && yarn build:npx",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install:local": "npm uninstall -g --force && npm i -g --force",
+    "start:npx": "yarn build && node index.js start -d dev"
+  },
+  "bin": {
+    "p5-viewer": "./index.js"
   },
   "dependencies": {
+    "commander": "^9.4.0",
     "grommet": "^2.25.0",
     "next": "12.2.2",
+    "open": "^8.4.0",
     "polished": "^4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

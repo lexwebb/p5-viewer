@@ -1,6 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "semi-style": ["error", "last"],
+    "semi-style": ["error", "last"]
   }
 }

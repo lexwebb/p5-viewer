@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 
+/// https://blog.logrocket.com/implementing-websocket-communication-next-js/
+
 export default function userHandler(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { name },
