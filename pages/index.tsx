@@ -14,44 +14,45 @@ const Home: NextPage = () => {
 
   return (
     <Page height="100%">
-      <PageContent height="100%">
+      <Box
+        gridArea="header"
+        background="light-1"
+        elevation="small"
+        pad="xsmall"
+        direction="row"
+        margin={{"bottom": "medium"}}
+      >
         <Grid
-          rows={["xxsmall", "auto"]}
-          columns={["medium", "auto"]}
+          rows={["xxsmall"]}
+          columns={["small", "auto"]}
           areas={[
-            { name: "header", start: [0, 0], end: [1, 0] },
-            { name: "nav", start: [0, 1], end: [0, 1] },
-            { name: "main", start: [1, 1], end: [1, 1] },
+            { name: "logo", start: [0, 0], end: [0, 0] },
+            { name: "topNav", start: [1, 0], end: [1, 0] },
           ]}
           height="100%"
+          gap="small"
         >
-          <Box
-            gridArea="header"
-            background="light-1"
-            elevation="small"
-            style={{ zIndex: 1 }}
-            pad="xsmall"
-            direction="row"
-          >
-            <Grid
-              rows={["auto"]}
-              columns={["medium", "auto"]}
-              areas={[
-                { name: "logo", start: [0, 0], end: [0, 0] },
-                { name: "topNav", start: [1, 0], end: [1, 0] },
-              ]}
-              height="100%"
-            >
-              <Box gridArea="logo">
-                <Image
-                  src="https://p5js.org/assets/img/p5js.svg"
-                  alt="logo"
-                  fit="contain"
-                />
-              </Box>
-              <Box gridArea="topNav"></Box>
-            </Grid>
+          <Box gridArea="logo">
+            <Image
+              src="https://p5js.org/assets/img/p5js.svg"
+              alt="logo"
+              fit="contain"
+            />
           </Box>
+          <Box gridArea="topNav"></Box>
+        </Grid>
+      </Box>
+      <PageContent height="100%">
+        <Grid
+          rows={["auto"]}
+          columns={["medium", "auto"]}
+          areas={[
+            { name: "nav", start: [0, 0], end: [0, 0] },
+            { name: "main", start: [1, 0], end: [1, 0] },
+          ]}
+          height="100%"
+          gap="small"
+        >
           <Box gridArea="nav">
             <SidebarNav data={data} selectSketch={setCurrentSketch} />
           </Box>

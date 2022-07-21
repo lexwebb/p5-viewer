@@ -50,7 +50,7 @@ const Sketch: React.FC<SketchProps> = ({ sketch }) => {
   return (
     <iframe
       key={iframeKey}
-      src={`/api/sketch/${sketch}`}
+      src={`/api/sketch/${encodeURIComponent(sketch)}`}
       className="p5-frame"
       frameBorder="0"
     ></iframe>
